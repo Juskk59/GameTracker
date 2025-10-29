@@ -1,9 +1,7 @@
 import tkinter as tk
 from tkinter import ttk, messagebox, filedialog
 from PIL import Image, ImageTk
-import os
 import base64
-from models.jogo import Jogo
 
 
 class GameTrackerView:
@@ -233,8 +231,7 @@ class GameTrackerView:
         )
         
         if arquivo:
-            jogo = Jogo()
-            caminho_assets = jogo.salvar_imagem_em_assets(arquivo)
+            caminho_assets = self.controller.lidar_salvar_imagem(arquivo)
             if caminho_assets:
                 self.imagem_selecionada = caminho_assets
                 self.exibir_preview_imagem(caminho_assets)
@@ -422,8 +419,7 @@ class GameTrackerView:
         
         imagem_base64 = None
         if self.imagem_selecionada:
-            jogo = Jogo()
-            imagem_base64 = jogo.converter_imagem_para_base64(self.imagem_selecionada)
+            imagem_base64 = self.controller.lidar_converter_imagem(self.imagem_selecionada)
         
         sucesso, msg = self.controller.lidar_add_jogo(
             titulo, plataforma, nota, descricao.strip(), self.usuario_id, imagem_base64
@@ -443,8 +439,7 @@ class GameTrackerView:
         
         imagem_base64 = None
         if self.imagem_selecionada:
-            jogo = Jogo()
-            imagem_base64 = jogo.converter_imagem_para_base64(self.imagem_selecionada)
+            imagem_base64 = self.controller.lidar_converter_imagem(self.imagem_selecionada)
         
         sucesso, msg = self.controller.lidar_edit_jogo(
             id_jogo, titulo, plataforma, nota, descricao.strip(), imagem_base64

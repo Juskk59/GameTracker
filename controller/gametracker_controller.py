@@ -91,3 +91,13 @@ class GameTrackerController:
     def lidar_obter_plataformas(self):
         # Retorna lista de plataformas disponíveis
         return Jogo.PLATAFORMAS
+    
+    def lidar_converter_imagem(self, caminho_imagem):
+        # Converte imagem para base64
+        jogo = Jogo()
+        return jogo.converter_imagem_para_base64(caminho_imagem)
+    
+    def lidar_salvar_imagem(self, caminho_origem):
+        # Salva imagem em assets
+        jogo = Jogo()
+        return jogo.salvar_imagem_em_assets(caminho_origem)
